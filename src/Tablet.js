@@ -1,17 +1,16 @@
 // Tablet.js
-import React, { useContext } from 'react';
-import { AppContext } from './AppContext';
-import { authenticate } from './authenticate';
+import React from 'react';
+import { useAuth } from './AuthContext';
 
-function Tablet() {
-  const { token, setLocation } = useContext(AppContext);
+const Tablet = () => {
+  const { authenticate } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await authenticate(token, setLocation);
+      await authenticate();
     } catch (err) {
-      console.error(err.message);
+      alert('Authentication failed');
     }
   };
 
@@ -20,6 +19,6 @@ function Tablet() {
       <button type="submit">Authenticate</button>
     </form>
   );
-}
+};
 
 export default Tablet;
