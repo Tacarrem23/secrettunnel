@@ -1,9 +1,19 @@
 // App.js
-import React, { useState } from 'react';
-import { AppContext } from './AppContext';
+import React from 'react';
+import { AuthProvider } from './AuthContext';
 import Entrance from './Entrance';
 import Tablet from './Tablet';
-import Tunnel from './Tunnel';
+
+function App() {
+  return (
+    <AuthProvider>
+      <Entrance />
+      <Tablet />
+    </AuthProvider>
+  );
+}
+
+export default App;
 
 function App() {
   const [token, setToken] = useState(null);
